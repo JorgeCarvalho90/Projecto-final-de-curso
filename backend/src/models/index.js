@@ -1,6 +1,6 @@
-import mongoose from "mongoose"
-import { productSchema } from "./product.js";
-import { categorySchema } from "./category.js";  
+import mongoose from "mongoose";
+import { productsSchema } from "./product.js";
+import { categorySchema } from "./category.js";
 
-export const Products = mongoose.model('products', productSchema);
-export const Categories = mongoose.model('categories', categorySchema);
+export const Product = mongoose.model("Product", productsSchema);
+export const Category = mongoose.model("Category", categorySchema);
