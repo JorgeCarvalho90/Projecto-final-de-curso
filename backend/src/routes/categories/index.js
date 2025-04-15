@@ -1,6 +1,6 @@
 import { Category } from "../../models/index.js";
 
-const categoriesRoutes = [
+const categoryRoutes = [
   {
     method: "get",
     path: "/categories",
@@ -11,4 +11,4 @@ const categoriesRoutes = [
   },
 ];
 
-export default categoriesRoutes;
+export default categoryRoutes;

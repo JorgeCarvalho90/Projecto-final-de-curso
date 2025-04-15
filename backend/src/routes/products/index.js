@@ -7,6 +7,8 @@ const idSchema = z.string().regex(RegexMongoObjectId, {
   message: "Invalid ObjectId format",
 });
 
+const slugSchema = z.string().toLowerCase();
+
 const productSchema = z
   .object({
     name: z.string(),
@@ -31,17 +33,21 @@ const productRoutes = [
   },
   {
     method: "get",
-    path: "/products/:id",
+    path: "/products/:slug",
     handler: async (req, res) => {
       try {
-        const { id } = req.params;
+        const { slug } = req.params;
 
-        const result = idSchema.safeParse(id);
+        const result = slugSchema.safeParse(slug);
         if (!result.success) {
-          return res.status(400).json({ message: "Bad user input" });
+          return res
+            .status(400)
+            .json({ message: "Bad user input", issues: result.error.issues });
         }
 
-        const product = await Product.findById(id).populate(["category"]);
+        const product = await Product.findOne({ slug: result.data }).populate([
+          "category",
+        ]);
         if (!product) {
           return res.status(404).json({ message: "Not found" });
         }
@@ -73,7 +79,7 @@ const productRoutes = [
 
         const addProduct = await Product.create(result.data);
 
-        res.status(200).json(addProduct);
+        res.status(201).json(addProduct);
       } catch {
         return res.status(500).json({ message: "Internal error" });
       }
