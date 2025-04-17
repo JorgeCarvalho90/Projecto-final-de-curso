@@ -12,7 +12,7 @@ const authRoutes = [
         const result = authSchema.safeParse(req.body);
         if (!result.success) {
           return res
-            .status(404)
+            .status(400)
             .json({ message: "Bad user input", issues: result.error.issues });
         }
 
