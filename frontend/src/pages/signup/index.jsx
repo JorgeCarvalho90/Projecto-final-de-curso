@@ -1,15 +1,26 @@
-import { Link } from "react-router";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router";
+import { useState, useContext, useEffect } from "react";
 import { signup } from "../../services/auth";
+import { AuthContext } from "../../context/auth";
 
 export default function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const { handleLogin, isLogged } = useContext(AuthContext);
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
-    await signup(email, password);
+    const response = await signup(email, password);
+    handleLogin(response.acessToken);
+    navigate("/account");
   };
+
+  useEffect(() => {
+    if (isLogged) {
+      navigate("/account");
+    }
+  }, [isLogged, navigate]);
 
   return (
     <>

@@ -1,11 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import React, { useEffect, useState, useContext } from "react";
+import { useParams, useNavigate } from "react-router";
 import { getProductsBySlug } from "../../services/products";
+import { CartContext } from "../../context/cart";
 
 export default function ProductDetails() {
   const { slug } = useParams();
-
+  const { addToCart } = useContext(CartContext);
+  const navigate = useNavigate();
   const [product, setProduct] = useState(null);
+
+  const handleBuy = () => {
+    addToCart(product);
+    navigate("/cart");
+  };
+
   useEffect(() => {
     getProductsBySlug(slug).then((res) => {
       setProduct(res);
@@ -31,13 +39,13 @@ export default function ProductDetails() {
               </h1>
 
               <p className="leading-relaxed">{product.description}</p>
-
+              {product.description}
               <div className="flex mt-6">
                 <span className="title-font font-medium text-2xl text-gray-900">
                   {product.price}€
                 </span>
                 <button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
-                  Comprar
+                  Buy
                 </button>
               </div>
             </div>

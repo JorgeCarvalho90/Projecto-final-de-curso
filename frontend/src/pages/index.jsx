@@ -22,6 +22,7 @@ export default function ProductsPage() {
               images={product.images}
               category={product.category}
               price={product.price}
+              slug={product.slug}
             />
           ))}
         </div>
