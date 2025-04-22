@@ -9,7 +9,7 @@ export default function CartProduct({ product }) {
     <div className="flex gap-4 p-4 items-center">
       <img
         onClick={() => navigate(`/products/${product.id}`)}
-        src={product.image}
+        src={product.images[0]}
         alt={product.name}
         className="w-24 h-24 object-cover rounded-xl cursor-pointer"
       />

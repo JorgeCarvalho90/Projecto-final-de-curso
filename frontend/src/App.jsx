@@ -9,7 +9,6 @@ import AccountPage from "./pages/account";
 import CartPage from "./pages/cart";
 import AuthContextProvider from "./context/auth";
 import CartContextProvider from "./context/cart";
-import CartProvider from "./context/cart";
 
 export default function app() {
   return (

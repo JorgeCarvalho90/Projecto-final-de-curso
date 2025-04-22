@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { getCategories } from "../services/categories";
 import { ShoppingCart, User } from "lucide-react";
 import { Link, useNavigate } from "react-router";
+import { CartContext } from "../context/cart";
 
 export default function Header() {
   const [categories, setCategories] = useState([]);
+  const { quantity } = useContext(CartContext);
+  const navigate = useNavigate();
+
   useEffect(() => {
     getCategories().then((res) => {
       setCategories(res);
     });
   }, []);
-  const navigate = useNavigate();
+
   return (
     <header className="text-gray-600 body-font">
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
@@ -32,12 +36,13 @@ export default function Header() {
         <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center cursor-pointer ">
           {categories.map((category, key) => {
             return (
-              <a
+              <Link
+                to={`/${category.slug}`}
                 className="mr-5 hover:text-gray-900 hover:bg-gray-200"
                 key={`category-item-${category.id} -${key}`}
               >
                 {category.name}
-              </a>
+              </Link>
             );
           })}
         </nav>
@@ -54,7 +59,7 @@ export default function Header() {
           >
             <ShoppingCart />
             <sup className="inline-flex items-center px-1.5 py-0.5 border-2 border-white rounded-full text-xs font-semibold leading-4 bg-red-500 text-white">
-              0
+              {quantity}
             </sup>
           </button>
         </div>
