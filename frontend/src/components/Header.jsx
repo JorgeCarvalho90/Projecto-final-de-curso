@@ -48,7 +48,7 @@ export default function Header() {
         </nav>
         <div className="flex gap-2">
           <button
-            onClick={() => navigate("/account")}
+            onClick={() => navigate("/login")}
             className="inline-flex items-center border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0 cursor-pointer"
           >
             <User />
