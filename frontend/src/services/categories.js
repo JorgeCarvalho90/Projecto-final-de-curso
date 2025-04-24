@@ -1,5 +1,4 @@
+const backendURL = import.meta.env.VITE_BACKEND_URL;
 export const getCategories = async () => {
-  return fetch("https://tech-store-coyy.onrender.com/categories").then((resp) =>
-    resp.json()
-  );
+  return fetch(backendURL + "/categories").then((resp) => resp.json());
 };

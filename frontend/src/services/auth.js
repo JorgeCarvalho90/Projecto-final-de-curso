@@ -1,5 +1,6 @@
+const backendURL = import.meta.env.VITE_BACKEND_URL;
 export const signup = async (email, password) => {
-  return fetch(`https://tech-store-coyy.onrender.com/auth/signup`, {
+  return fetch(backendURL + "/auth/signup", {
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -9,7 +10,7 @@ export const signup = async (email, password) => {
 };
 
 export const login = async (email, password) => {
-  return fetch("https://tech-store-coyy.onrender.com/auth/login", {
+  return fetch(backendURL + "/auth/login", {
     method: "post",
     headers: {
       "Content-Type": "application/json",
