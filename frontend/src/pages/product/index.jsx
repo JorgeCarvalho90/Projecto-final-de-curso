@@ -39,7 +39,6 @@ export default function ProductDetails() {
               </h1>
 
               <p className="leading-relaxed">{product.description}</p>
-              {product.description}
               <div className="flex mt-6">
                 <span className="title-font font-medium text-2xl text-gray-900">
                   {product.price}€

@@ -41,7 +41,7 @@ export default function Header() {
                 className="mr-5 hover:text-gray-900 hover:bg-gray-200"
                 key={`category-item-${category.id} -${key}`}
               >
-                {category.name}
+                {category.slug}
               </Link>
             );
           })}
