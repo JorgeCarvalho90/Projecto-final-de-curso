@@ -1,5 +1,5 @@
 export const signup = async (email, password) => {
-  return fetch("http://localhost:3000/auth/signup", {
+  return fetch(`https://tech-store-coyy.onrender.com/auth/signup`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -9,7 +9,7 @@ export const signup = async (email, password) => {
 };
 
 export const login = async (email, password) => {
-  return fetch("http://localhost:3000/auth/login", {
+  return fetch("https://tech-store-coyy.onrender.com/auth/login", {
     method: "post",
     headers: {
       "Content-Type": "application/json",
